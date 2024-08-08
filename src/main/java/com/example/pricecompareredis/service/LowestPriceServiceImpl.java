@@ -19,9 +19,12 @@ public class LowestPriceServiceImpl implements LowestPriceService{
     private final RedisTemplate myProdPriceRedisTemplate;
 
     @Override
-    public Set getZsetValue(String key) {
+    public Set getZsetValue(String key) throws Exception{
         Set myTempSet = new HashSet();
         myTempSet = myProdPriceRedisTemplate.opsForZSet().rangeWithScores(key, 0, 9);
+        if(myTempSet.size()==0) {
+            throw new Exception("The key doesn't have any member");
+        }
         return myTempSet;
     }
 

@@ -7,7 +7,7 @@ import com.example.pricecompareredis.vo.ProductGrp;
 import java.util.Set;
 
 public interface LowestPriceService {
-    Set getZsetValue(String key);
+    Set getZsetValue(String key) throws Exception;
 
     int setNewProduct(Product product);
 
